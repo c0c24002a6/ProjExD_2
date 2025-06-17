@@ -64,19 +64,22 @@ def init_bb_imgs() -> tuple[list[pg.Surface], list[int]]:
     return sbb_accs, bb_lst
 
 
-def load_kk_images() -> dict[tuple[int, int], pg.Surface]: # こうかとんの画像を読み込む
-    img_base = pg.image.load("fig/3.png") # こうかとんの画像を読み込む
-    img_base = pg.transform.rotozoom(img_base, 0, 0.9) # 画像のサイズを縮小する
+def load_kk_images() -> dict[tuple[int, int], pg.Surface]:  # こうかとんの画像を読み込む
+    img_base = pg.image.load("fig/3.png")  # こうかとんの画像を読み込む
+    img_base = pg.transform.rotozoom(img_base, 0, 0.9)  # 画像のサイズを縮小する
+    himgs_base=pg.transform.flip(img_base,True,False)
+    himgs_base2=pg.transform.flip(img_base,False,True)
+    himgs_base3=pg.transform.flip(img_base,True,True)
     kk_imgs = {
         (0, 0): img_base,  # 静止画像
-        (0, -5): pg.transform.rotozoom(img_base, -90, 0.9), # 上方向
-        (0, 5): pg.transform.rotozoom(img_base, 90, 0.9), # 下方向
-        (-5, 0): pg.transform.rotozoom(img_base, 90, 0.9), # 左方向
-        (5, 0): pg.transform.rotozoom(img_base, -90, 0.9), # 右方向
-        (-5, -5): pg.transform.rotozoom(img_base, 45, 0.9), # 左上方向
-        (-5, 5): pg.transform.rotozoom(img_base, 135, 0.9), # 左下方向
-        (5, -5): pg.transform.rotozoom(img_base, -45, 0.9), # 右上方向
-        (5, 5): pg.transform.rotozoom(img_base, -135, 0.9), # 右下方向
+        (0, -5): pg.transform.rotozoom(himgs_base2, -90, 0.9),  # 上方向
+        (0, 5): pg.transform.rotozoom(himgs_base2, 90, 0.9),  # 下方向
+        (-5, 0): pg.transform.rotozoom(himgs_base3, 180, 0.9),  # 左方向
+        (5, 0): pg.transform.rotozoom(himgs_base2, -180, 0.9),  # 右方向
+        (-5, -5): pg.transform.rotozoom(img_base, -45, 0.9),  # 左上方向
+        (-5, 5): pg.transform.rotozoom(img_base, 45, 0.9),  # 左下方向
+        (5, -5): pg.transform.rotozoom(himgs_base, 45, 0.9),  # 右上方向
+        (5, 5): pg.transform.rotozoom(himgs_base, -45, 0.9),  # 右下方向
     }
     return kk_imgs
 
