@@ -91,6 +91,16 @@ def get_kk_img(sum_mv: tuple[int, int], kk_imgs: dict[tuple[int, int], pg.Surfac
     return kk_imgs.get(tuple(sum_mv), kk_imgs[(0, 0)])
 
 
+def calc_orientation(org: pg.Rect, dst: pg.Rect,current_xy: tuple[float, float]) -> tuple[float, float]:
+    current_xy=[]
+    x=org.centerx-dst.centerx
+    y=org.centery-dst.centery
+    n=(x**2+y**2)**(1/2)
+    x/n*(50**(1/2))
+    y/n*(50**(1/2))
+    return x/n*(50**(1/2)),y/n*(50**(1/2))
+
+
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
